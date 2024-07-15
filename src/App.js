@@ -1,4 +1,4 @@
-import styles from '../src/css/App.module.css'
+import styles from './App.module.css'
 import NavBar from '../src/components/NavBar'
 
 function App() {
