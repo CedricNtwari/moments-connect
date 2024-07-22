@@ -6,6 +6,7 @@ import './api/axiosDefaults'
 import SignUpForm from './pages/auth/SignUpForm'
 import SignInForm from './pages/auth/ SignInForm'
 import PostCreateForm from './pages/posts/PostCreateForm'
+import PostPage from './pages/posts/PostPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/feed" render={() => <h1>Feed page</h1>} />
           <Route path="/liked" render={() => <h1>Liked page</h1>} />
           <Route path="/posts/create" render={() => <PostCreateForm />} />
+          <Route path="/posts/:id" render={() => <PostPage />} />
           <Route render={() => <h1>Page not found!!!</h1>} />
         </Switch>
       </Container>
