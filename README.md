@@ -67,6 +67,20 @@ Contributions are what make the open-source community such an amazing place to l
 4. Push to the Branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request
 
+### Project Walkthrough
+
+During the course of this walkthrough project you’ve learned how to:
+
+- Handle client-side routing with React
+- Create the UI for users to list, create, read, update, and delete records from an API.
+- Handle form data submission with async await when making network requests
+- Use Context to avoid passing props down too many levels in the DOM tree
+- Improve the user experience with infinite scrolling that reduces loading times
+- Create custom hooks to handle repeatable state logic
+- Use advanced destructuring and optional chaining to streamline your code
+- Use the React Bootstrap library to integrate Bootstrap styles into a React application
+
+
 ### Contact
 
 Cedric Ntwari - @CedricNtwari
