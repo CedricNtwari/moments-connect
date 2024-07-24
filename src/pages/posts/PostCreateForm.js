@@ -6,18 +6,22 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
+import Image from 'react-bootstrap/Image'
+
+import Asset from '../../components/Asset'
 
 import Upload from '../../assets/upload.png'
 
 import styles from '../../styles/PostCreateEditForm.module.css'
 import appStyles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
-import Asset from '../../components/Asset'
-import { Image } from 'react-bootstrap'
+
 import { useHistory } from 'react-router'
 import { axiosReq } from '../../api/axiosDefaults'
+import { useRedirect } from '../../hooks/useRedirect'
 
 function PostCreateForm() {
+  useRedirect('loggedOut')
   const [errors, setErrors] = useState({})
 
   const [postData, setPostData] = useState({
@@ -49,17 +53,20 @@ function PostCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const formdata = new FormData()
-    formdata.append('title', title)
-    formdata.append('content', content)
-    formdata.append('image', imageInput.current.files[0])
+    const formData = new FormData()
+
+    formData.append('title', title)
+    formData.append('content', content)
+    formData.append('image', imageInput.current.files[0])
 
     try {
-      const { data } = await axiosReq.post('/posts', formdata)
+      const { data } = await axiosReq.post('/posts/', formData)
       history.push(`/posts/${data.id}`)
-    } catch (error) {
-      console.log(error)
-      setErrors(error.response?.data)
+    } catch (err) {
+      console.log(err)
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data)
+      }
     }
   }
 
@@ -74,6 +81,7 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+
       <Form.Group>
         <Form.Label>Content</Form.Label>
         <Form.Control
@@ -139,6 +147,7 @@ function PostCreateForm() {
                 {message}
               </Alert>
             ))}
+
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
